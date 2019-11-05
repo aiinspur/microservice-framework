@@ -22,7 +22,8 @@
     </properties>
 
     <modules>
-        <module>ms-eureka</module>
+        <module>msf-eureka</module>
+        <module>msf-mng</module>
     </modules>
 
 
