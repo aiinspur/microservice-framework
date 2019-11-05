@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Base CSS -->
+    <link rel="stylesheet" href="#" th:href="@{/s/css/style.css}" />
+    <!-- Material Icons -->
+    <link href="#" th:href="@{/s/css/icon.css}" rel="stylesheet" />
+    <!-- Fontawesome Icons -->
+    <link href="#" th:href="@{/s/css/fontawesome/fontawesome-all.min.css}"  rel="stylesheet" />
+    <link href="#" th:href="@{/s/css/login.css}" rel="stylesheet" />
+    <title>SignIn-IDF</title>
+</head>
+<body>
+
+<section class="wrapper">
+    <div class="login">
+        <div class="image-placeholder">
+            <h1>Lorem ipsum dolor sit amet<br>consectetur pellentesque adipiscing elit.</h1>
+        </div>
+
+        <div class="form">
+            <form id="localeForm" th:method="get" th:action="@{/signin.html}">
+                <select id="locale" name="locale" class="form-control float-right w-auto">
+                    <option th:selected="${#locale} eq zh_CN" th:value="zh_CN">简体中文</option>
+                    <option th:selected="${#locale.toString()} eq zh_TW" th:value="zh_TW">繁体中文</option>
+                    <option th:selected="${#locale.toString()} eq en_US" th:value="en_US" >EngLish</option>
+                </select>
+            </form>
+            <form id="form" th:method="post" th:action="@{/signin.html}">
+            <div class="text-center mb-4"><span class="material-icons text-danger" style="font-size:6rem;" >account_circle</span></div>
+
+            <h3 class="h4 mb-5 text-center">Admin Login</h3>
+                <div class="form-group">
+                    <label for="username" th:text="#{signin.username}">Email or Username </label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+                </div>
+                <div class="form-group">
+                    <label for="password" th:text="#{signin.password}">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+                </div>
+                <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Remember me</label>
+                    <a href="#" data-toggle="modal" data-target="#forgotPassword" class="float-right">Password ?</a>
+                </div>
+                <button class="btn mt-4 btn-primary btn-block" type="submit">Login</button>
+                <a href="#" th:href="@{/signup.html}" class="mt-2 float-right">Sign Up</a>
+            </form>
+
+        </div>
+    </div>
+</section>
+
+
+<div class="modal fade " id="forgotPassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog " role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" id="exampleModalLabel">Forgot Your Password ?</div>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="exampleInputEmail2">Email or Username</label>
+                        <input type="email" class="form-control" id="exampleInputEmail2" aria-describedby="emailHelp" placeholder="Enter email">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Reset Password</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="#" th:src="@{/s/js/jquery.min.js}"></script>
+<!--<script src="assets/js/popper.min.js"></script>-->
+<script src="#" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<!--<script src="assets/js/sys.js"></script>-->
+
+<script>
+
+    $(function(){
+        $('#locale').change(function(){
+            $('#localeForm').submit();
+        })
+    });
+</script>
+
+</body>
+</html>

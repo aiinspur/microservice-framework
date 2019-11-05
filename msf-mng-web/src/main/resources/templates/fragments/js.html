@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+</head>
+<body>
+
+<th:block th:fragment="menu">
+    <script src="#" th:src="@{/s/js/jquery.min.js}"></script>
+    <script src="#" th:src="@{/s/js/menu.js}"></script>
+</th:block>
+
+<th:block th:fragment="common(scripts)">
+    <script src="#" th:src="@{/s/js/jquery.min.js}"></script>
+    <script src="#" th:src="@{/s/js/lib/popper.min.js}"></script>
+    <script src="#" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+
+    <script src="#" th:src="@{/s/js/chosen-js/chosen.jquery.js}"></script>
+    <script class="custom-script" th:src="@{/s/js/sys.js}"></script>
+
+    <th:block th:replace="${scripts}" />
+
+</th:block>
+
+<th:block th:fragment="index_page(scripts)">
+    <script class="custom-script" th:src="@{/s/js/chartjs/Chart.js}"></script>
+    <script class="custom-script" th:src="@{/s/js/chartjs/utils.js}"></script>
+
+    <script class="custom-script" th:src="@{/s/js/lib/moment.min.js}"></script>
+    <script src="#" th:src="@{/s/js/jquery.min.js}"></script>
+    <script class="custom-script" th:src="@{/s/js/lib/popper.min.js}"></script>
+    <script src="#" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+    <script class="custom-script" th:src="@{/s/js/chosen-js/chosen.jquery.js}"></script>
+    <script class="custom-script" th:src="@{/s/js/fullcalendar/fullcalendar.js}"></script>
+    <script class="custom-script" th:src="@{/s/js/daterangepicker/daterangepicker.min.js}"></script>
+    <script class="custom-script" th:src="@{/s/js/sys.js}"></script>
+    <script class="custom-script" th:src="@{/s/js/pages/dashboard.script.js}"></script>
+</th:block>
+
+</body>
+</html>

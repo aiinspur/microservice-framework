@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head(~{this :: title}, ~{this :: .custom-link},~{this :: .custom-script})">
+    <!-- TreeTable CSS -->
+    <link class="custom-link" th:href="@{/s/css/jquery.treetable.css}" rel="stylesheet">
+    <link class="custom-link" th:href="@{/s/css/jquery.treetable.theme.default.css}" rel="stylesheet">
+
+    <title>Resource Management List</title>
+</head>
+<body>
+<section class="wrapper">
+    <!-- SIDEBAR -->
+    <aside class="sidebar" th:replace="layout/layout :: aside">
+    </aside>
+    <!-- SIDEBAR END -->
+    <!--RIGHT CONTENT AREA-->
+    <div class="content-area">
+        <!-- header-->
+        <header class="header sticky-top" th:replace="layout/layout :: header">
+        </header>
+        <!-- header end-->
+        <div class="content-wrapper" th:replace="layout/layout :: right(~{this :: .page-tilte},~{this :: .content})">
+
+            <div class="row page-tilte align-items-center">
+                <div class="col-md-auto">
+                    <a href="#" class="mt-3 d-md-none float-right toggle-controls"><span class="material-icons">keyboard_arrow_down</span></a>
+                    <h1 class="weight-300 h3 title">Resource Management </h1>
+                    <p class="text-muted m-0 desc">Resource List</p>
+                </div>
+                <div class="col controls-wrapper mt-3 mt-md-0 d-none d-md-block ">
+                    <div class="controls d-flex justify-content-center justify-content-md-end">
+                        <input type="search" class="form-control d-inline-block" placeholder="Search in tabel...">
+                        <span class="dropdown">
+                    <button type="button" id="downloadGrid" data-toggle="dropdown" class="btn btn-secondary py-1 px-2" ><span class="material-icons align-text-bottom">save_alt</span></button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="downloadGrid">
+                      <a class="dropdown-item" href="#">Save as PDF</a>
+                      <a class="dropdown-item" href="#">Save as Image</a>
+                      <a class="dropdown-item" href="#">Save as Word</a>
+                      <div class="dropdown-divider"></div>
+                      <a class="dropdown-item" href="#">Export Excel</a>
+                    </div>
+                    </span>
+                        <button type="button" class="btn btn-secondary py-1 px-2" data-toggle="modal" data-target="#gridFilters" ><span class="material-icons align-text-bottom">filter_list</span></button>
+                        <button id="btnAdd" type="button" th:onclick="@{'location.href=\''+${#servletContext.contextPath}+'/sys/resource/add\''}" class="btn btn-secondary py-1 px-2" >
+                            <span class="material-icons align-text-bottom">add</span>
+                        </button>
+                        <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#addGrid" >Add Somthing</button>
+
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+
+            <table id="resourceTable" class="table mb-4 responsive-table table-bordered bg-white">
+                <thead class="thead-light">
+                <tr>
+                    <th scope="col" class="resizeable">菜单名称</th>
+                    <th scope="col" class="resizeable">链接</th>
+                    <th scope="col" class="resizeable">排序 </th>
+                    <th scope="col" class="resizeable">类型</th>
+                    <th scope="col" class="resizeable">可见</th>
+                    <th scope="col" class="resizeable">权限标识</th>
+                    <th scope="col" width="1">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr data-tt-id='10'>
+                    <td data-label="Link Text"><a href="#" class="text-secondary">我的工作</a></td>
+
+                    <td data-label="First Name">Mark</td>
+                    <td data-label="Last Name">Otto</td>
+                    <td data-label="Some Other">@mdo</td>
+                    <td data-label="Some Other">@mdo</td>
+                    <td data-label="Some Other">@mdo</td>
+                    <td>
+                    </td>
+                </tr>
+                <tr data-tt-id='1'>
+                    <td data-label="Link Text"><a href="#" class="text-secondary">系统管理</a></td>
+
+                    <td data-label="First Name">Ldoe</td>
+                    <td data-label="Last Name">Dhdo</td>
+                    <td data-label="Some Other">@mdo</td>
+                    <td data-label="Some Other">@mdo</td>
+                    <td data-label="Some Other">@mdo</td>
+                    <td data-label="Actions">
+                    </td>
+                </tr>
+                <tr data-tt-id='2' data-tt-parent-id='1'>
+                    <td data-label="Link Text"><a href="#" class="text-secondary">系统设置</a></td>
+
+                    <td data-label="First Name">Tdpd</td>
+                    <td data-label="Last Name">Whdi</td>
+                    <td data-label="Some Other">@mdo</td>
+                    <td data-label="Some Other">@mdo</td>
+                    <td data-label="Some Other">@mdo</td>
+                    <td data-label="Actions" class="text-md-center dropdown dropleft">
+                        <a href="#" class="text-muted" id="actionDropdown" data-toggle="dropdown"><span class="material-icons md-20 align-middle">more_vert</span></a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="actionDropdown">
+                            <a class="dropdown-item" href="#">Delete Row</a>
+                            <a class="dropdown-item" href="#">Edit Row</a>
+                            <a class="dropdown-item" href="#">Clone Row</a>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr data-tt-id='4' data-tt-parent-id='2'>
+                    <td data-label="Link Text"><a href="#" class="text-secondary">模块管理</a></td>
+
+                    <td data-label="First Name">Mark</td>
+                    <td data-label="Last Name">Otto</td>
+                    <td data-label="Some Other">@mdo</td>
+                    <td data-label="Some Other">@mdo</td>
+                    <td data-label="Some Other">@mdo</td>
+                    <td data-label="Actions" class="text-md-center dropdown dropleft">
+                        <a href="#" class="text-muted" id="actionDropdown" data-toggle="dropdown"><span class="material-icons md-20 align-middle">more_vert</span></a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="actionDropdown">
+                            <a class="dropdown-item" href="#">Delete Row</a>
+                            <a class="dropdown-item" href="#">Edit Row</a>
+                            <a class="dropdown-item" href="#">Clone Row</a>
+                        </div>
+                    </td>
+                </tr>
+                <tr data-tt-id='3' data-tt-parent-id='2'>
+                    <td data-label="Link Text"><a href="#" class="text-secondary">菜单管理</a></td>
+
+                    <td data-label="First Name">Mark</td>
+                    <td data-label="Last Name">Otto</td>
+                    <td data-label="Some Other">@mdo</td>
+                    <td data-label="Some Other">@mdo</td>
+                    <td data-label="Some Other">@mdo</td>
+                    <td data-label="Actions" class="text-md-center dropdown dropleft">
+                        <a href="#" class="text-muted" id="actionDropdown" data-toggle="dropdown"><span class="material-icons md-20 align-middle">more_vert</span></a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="actionDropdown">
+                            <a class="dropdown-item" href="#">Delete Row</a>
+                            <a class="dropdown-item" href="#">Edit Row</a>
+                            <a class="dropdown-item" href="#">Clone Row</a>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr data-tt-id='5' data-tt-parent-id='2'>
+                    <td data-label="Link Text"><a href="#" class="text-secondary">参数设置</a></td>
+
+                    <td data-label="First Name">Tdpd</td>
+                    <td data-label="Last Name">Whdi</td>
+                    <td data-label="Some Other">@mdo</td>
+                    <td data-label="Some Other">@mdo</td>
+                    <td data-label="Some Other">@mdo</td>
+                    <td data-label="Actions" class="text-md-center dropdown dropleft">
+                        <a href="#" class="text-muted" id="actionDropdown" data-toggle="dropdown"><span class="material-icons md-20 align-middle">more_vert</span></a>
+                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="actionDropdown">
+                            <a class="dropdown-item" href="#">Delete Row</a>
+                            <a class="dropdown-item" href="#">Edit Row</a>
+                            <a class="dropdown-item" href="#">Clone Row</a>
+                        </div>
+                    </td>
+                </tr>
+
+
+                </tbody>
+            </table>
+
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+    </div>
+</section>
+
+
+
+<th:block th:replace="fragments/js::common(~{::script})" />
+
+<script src="#" th:src="@{/s/js/jquery.treetable.js}"></script>
+<script>
+
+
+
+    $(function(){
+
+        $("#resourceTable").treetable({ expandable: true });
+
+    })
+
+</script>
+</body>
+
+</html>

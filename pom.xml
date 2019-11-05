@@ -23,7 +23,7 @@
 
     <modules>
         <module>msf-eureka</module>
-        <module>msf-mng</module>
+        <module>msf-mng-web</module>
     </modules>
 
 

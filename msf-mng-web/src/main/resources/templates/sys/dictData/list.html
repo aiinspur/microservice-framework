@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head(~{this :: title}, ~{},~{})">
+    <title>Dict Data List</title>
+</head>
+<body>
+<section class="wrapper">
+    <aside class="sidebar" th:replace="layout/layout :: aside">
+    </aside>
+    <div class="content-area">
+        <header class="header sticky-top" th:replace="layout/layout :: header">
+        </header>
+        <div class="content-wrapper"
+             th:replace="layout/layout :: right(~{this :: .page-tilte},~{this :: .content},~{this :: #query})">
+
+            <div class="row page-tilte align-items-center">
+                <div class="col-md-auto">
+                    <a href="#" class="mt-3 d-md-none float-right toggle-controls"><span class="material-icons">keyboard_arrow_down</span></a>
+                    <h1 class="weight-300 h3 title">Dict Data Management </h1>
+                    <p class="text-muted m-0 desc">Dict Data List</p>
+                </div>
+                <div class="col controls-wrapper mt-3 mt-md-0 d-none d-md-block ">
+                    <div class="controls d-flex justify-content-center justify-content-md-end">
+                        <button type="button" class="btn btn-secondary  py-1 px-2"
+                                th:onclick="@{'location.href=\''+${#servletContext.contextPath}+'/sys/dicts\''}">
+                            <span class="material-icons mr-1 align-top">keyboard_return</span>返回字典
+                        </button>
+
+                        <button id="queryBtn" type="button" class="btn btn-secondary  py-1 px-2"><span
+                                class="material-icons mr-1 align-top">filter_list</span>查询
+                        </button>
+                        <button id="btnAdd" type="button"
+                                th:onclick="@{'location.href=\''+${#servletContext.contextPath}+'/sys/dict/data/'+${code}+'\''}"
+                                class="btn btn-secondary py-1 px-2">
+                            <span class="material-icons align-text-bottom">add</span>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-2" id="query" style="display: none">
+                <div class="card-header">Query</div>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-auto col-form-label">名称：</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="inputEmail3" placeholder="name">
+                        </div>
+                        <button type="button" class="btn btn-sm btn-info ">查询</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="content">
+
+                <table id="treeTable" class="table mb-4 responsive-table table-bordered bg-white">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">字典标签</th>
+                        <th scope="col">字典键值</th>
+                        <th scope="col">排序号</th>
+                        <th scope="col" width="1">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    <tr th:each="obj : ${list}">
+                        <td>
+                            <a href="#" th:href="@{'/sys/dict/'+${obj.getId()}}" class="text-secondary"
+                               th:text="${obj.label}"> - </a></td>
+                        <td th:text="${obj.value}"> - </td>
+                        <td th:text="${obj.sort}"> - </td>
+                        <td data-label="Actions" class="text-md-center dropdown dropleft">
+<!--                            <a href="#" th:href="@{'/sys/dict/data?dictId='+${obj.getId()}}">-->
+<!--                                <span class="material-icons ">settings</span>-->
+<!--                            </a>-->
+                            <a href="#" th:href="@{'/sys/dict/data/'+${obj.id}}">
+                                <span class="material-icons ">edit</span>
+                            </a>
+                            <a href="#" th:href="@{'/sys/dict/'+${obj.code}+'/data/delete/'+${obj.id}}" class="border-danger">
+                                <span class="material-icons border-danger">delete</span>
+                            </a>
+
+
+                        </td>
+                    </tr>
+
+
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+
+<th:block th:replace="fragments/js::common(~{})"/>
+
+
+<script>
+
+    $(function () {
+
+        $("#queryBtn").click(function () {
+            var text = "";
+            if ($("#query").css('display') == 'none') {
+                $("#query").show();
+                text = "隐藏";
+            } else {
+                $("#query").hide();
+                text = "查询";
+            }
+
+            $("#queryBtn").html('<span class="material-icons mr-1 align-top">filter_list</span>' + text);
+
+
+        });
+
+
+    })
+
+</script>
+</body>
+
+</html>

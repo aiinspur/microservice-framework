@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:fragment="head(title,links,scripts)">
+    <!--/*  Title will be replaced by their respective titles in the calling template. */-->
+    <title th:replace="${title}">Layout title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="IDF">
+    <meta name="author" content="aiinspur">
+    <link rel="icon" href="assets/images/favicon.ico" th:href="@{/s/images/favicon.ico}">
+    <!-- Material Icons -->
+    <link href="#" th:href="@{/s/css/icon.css}" rel="stylesheet" />
+    <!-- Base CSS -->
+    <link rel="stylesheet" href="assets/css/style.css" th:href="@{/s/css/style.css}">
+
+<!--    <script src="#" th:src="@{/s/js/jquery.min.js}"></script>-->
+    <!--/* Per-page placeholder for additional links */-->
+    <th:block th:replace="${links}"></th:block>
+
+</head>
+<!--<body th:fragment="body(scripts)">-->
+<body>
+<section class="wrapper">
+    <!-- SIDEBAR -->
+    <aside class="sidebar" th:fragment="aside" th:replace="fragments/sidebar :: aside">
+    </aside>
+    <!--RIGHT CONTENT AREA-->
+    <div class="content-area">
+        <header class="header sticky-top" th:fragment="header" th:replace="fragments/header :: header">
+        </header>
+        <div class="content-wrapper" th:fragment="right(pageTilte,pageContent,queryConditions)">
+            <th:block th:replace="${pageTilte}" />
+            <th:block th:replace="${queryConditions}" />
+
+
+
+
+
+
+            <th:block th:replace="${pageContent}" />
+            <footer class="footer" th:replace="fragments/footer :: footer">
+            </footer>
+        </div>
+    </div>
+
+</section>
+</body>
+</html>

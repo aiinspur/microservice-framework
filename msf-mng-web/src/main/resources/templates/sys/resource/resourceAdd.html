@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head(~{this :: title}, ~{},~{})">
+    <title th:text="${addOrUpt} eq 'add'? 'Add - Resource Management' :'Update - Resource Management'">Add - Resource Management</title>
+</head>
+<body>
+<section class="wrapper">
+    <aside class="sidebar" th:replace="layout/layout :: aside">
+    </aside>
+    <div class="content-area">
+        <header class="header sticky-top" th:replace="layout/layout :: header">
+        </header>
+        <div class="content-wrapper" th:replace="layout/layout :: right(~{this :: .page-tilte},~{this :: .card},~{})">
+            <div class="row page-tilte align-items-center">
+                <div class="col-md-auto">
+                    <a href="#" class="mt-3 d-md-none float-right toggle-controls"><span class="material-icons">keyboard_arrow_down</span></a>
+                    <h1 class="weight-300 h3 title"
+                        th:text="${addOrUpt} eq 'add'? 'Resource Management / Add Resource' :'Resource Management / Update Resource'"></h1>
+                    <p class="text-muted m-0 desc"
+                       th:text="${addOrUpt} eq 'add'? 'Add Resource' :'Update Resource'"></p>
+                </div>
+            </div>
+
+
+            <div class="card">
+                <!--<div class="card-header">Add Resource</div>-->
+                <div class="card-body">
+                    <form method="post" th:action="@{/sys/resource}" th:object="${resource}">
+                        <input th:type="hidden" th:field="${resource.id}"/>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="type">Resource Type</label>
+                                <select id="type" name="type" class="form-control">
+                                    <option th:selected="${resource.type} eq '1'" th:value="1">menu</option>
+                                    <option th:selected="${resource.type} eq '0'" th:value="0">permission</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label th:for="name">Resource Name</label>
+                                <input type="text" class="form-control" th:field="${resource.name}" placeholder="Resource Name" >
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="menuHref">Menu Href</label>
+                                <input type="text" class="form-control" th:field="${resource.menuHref}" placeholder="menu href">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="parentId">Parent Menu</label>
+                                <input type="text" class="form-control" th:field="${resource.parentId}" placeholder="parent menu">
+                            </div>
+
+                            <div class="form-group col-md-4">
+                                <label for="menuSort">Sort</label>
+                                <input type="text" class="form-control" th:field="${resource.menuSort}" placeholder="sort">
+                            </div>
+                            <div class="form-group col-md-4">
+
+                                <label for="Visibility">Visibility</label>
+                                <select id="Visibility" name="show" class="form-control">
+                                    <option th:selected="${resource.show} eq '1'" th:value="1">display</option>
+                                    <option th:selected="${resource.show} eq '0'" th:value="0">hiden</option>
+                                </select>
+
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-4">
+                                <label for="permission">Permission</label>
+                                <input type="text" class="form-control" th:field="${resource.permission}"
+                                       placeholder="permission">
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label for="remarks">Remarks</label>
+                                <input type="text" class="form-control" th:field="${resource.remarks}"
+                                       placeholder="remarks">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group col-md-12 text-right">
+                                <button type="submit" class="btn btn-primary  py-1 px-2"><span
+                                        class="material-icons mr-1 align-top">save</span> 保存
+                                </button>
+                                <button type="button" class="btn btn-secondary  py-1 px-2"><span
+                                        class="material-icons mr-1 align-top">clear_all</span> 重置
+                                </button>
+                                <button type="button" class="btn btn-danger py-1 px-2" id="closeBtn"
+                                        th:onclick="@{'location.href=\''+${#servletContext.contextPath}+'/sys/resources\''}">
+                                    <span class="material-icons align-top md-18 mr-1">close</span> 关闭
+                                </button>
+                            </div>
+
+                        </div>
+
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<th:block th:replace="fragments/js::common(~{::script})"/>
+<script src="#" th:src="@{/s/js/}"></script>
+
+<script>
+    $(function () {
+
+
+        // $("#closeBtn").click(function () {
+        //
+        //     window.location.href=""
+        // });
+
+    })
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>sidebar</title>
+</head>
+<body>
+<!-- SIDEBAR -->
+<aside class="sidebar" th:fragment="aside">
+    <nav class="navbar navbar-dark bg-primary">
+        <a class="navbar-brand m-0 py-2 brand-title" href="#">Cosmo Admin</a>
+        <span></span>
+        <a class="navbar-brand py-2 material-icons toggle-sidebar" href="#">menu</a>
+    </nav>
+
+    <nav class="navigation" >
+        <ul>
+            <li th:classappend="${menuHref == 'index' ? 'active' : ''}"><a href="#" th:href="@{/}" title="Dashboard"><span class="nav-icon material-icons">public</span> Dashboard</a></li>
+            <li th:classappend="${menuHref == 'sys/resource1' ? 'active' : ''}"><a href="#" th:href="@{/sys/resource}"><span class="nav-icon material-icons ">color_lens</span> Resource Manager </a>
+            </li>
+            <li th:classappend="${#strings.containsIgnoreCase('yes','y') ? 'open active' : ''}"><a href="#" title="Layout Options"><span class="nav-icon material-icons">dashboard</span> Layout Options<span class="toogle-sub-nav material-icons">keyboard_arrow_right</span></a>
+                <ul class="sub-nav">
+                    <li th:classappend="${menuHref == 'sys/resource' ? 'active' : ''}"><a href="#" th:href="@{/sys/resource}" title="Top Navigation">Resource Manager</a></li>
+
+                </ul>
+            </li>
+        </ul>
+
+        <label title="UI Elements & Widgets"><span>UI Elements & Widgets</span></label>
+        <ul>
+            <li>
+                <a href="#" title="UI Componets"><span class="nav-icon material-icons ">extension</span> UI Componets <span class="toogle-sub-nav material-icons">keyboard_arrow_right</span></a>
+                <ul class="sub-nav">
+                    <li><a href="general-elements.html" title="">General Elements</a></li>
+                    <li><a href="buttons.html" title="Buttons">Buttons</a></li>
+                    <li><a href="modals.html" title="Modals">Modals</a></li>
+                    <li><a href="tabs-navs.html" title="Tabs & Navs">Tabs &amp; Navs</a></li>
+                    <li><a href="full-calendar.html" title="Full Calendar">Full Calendar</a></li>
+                    <li><a href="icons.html" title="Icons">Icons</a></li>
+                    <li><a href="typography.html" title="Typography">Typography</a></li>
+                    <li><a href="tree-view.html" title="Tree View">Tree View</a></li>
+                    <li><a href="bootstrap-grid.html" title="Bootstrap Grid">Bootstrap Grid</a></li>
+                    <li><a href="loaders.html" title="Loaders">Loaders</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+</aside>
+
+</body>
+</html>

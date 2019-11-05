@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>alert</title>
+    <!-- Base CSS -->
+    <link rel="stylesheet" href="#" th:href="@{/s/css/style.css}" />
+</head>
+<body>
+    <div th:fragment="alert (type, message)" th:assert="${!#strings.isEmpty(type) and !#strings.isEmpty(message)}"
+         class="alert alert-warning alert-dismissible fade show" role="alert" th:classappend="'alert-' + ${type}">
+        <span th:text="${message}">You should check in on some of those fields below.</span>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true" class="material-icons md-18">clear</span>
+        </button>
+    </div>
+</body>
+</html>

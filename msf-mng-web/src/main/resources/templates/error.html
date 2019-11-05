@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head(~{this :: title}, ~{this ::link},~{this ::script})">
+    <link th:href="@{/s/css/pages/messages.css}" rel="stylesheet">
+    <title>Error Page - IDF</title>
+</head>
+    <body th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf((#response != null)? #response.status : 500)}">
+    <div class="content-wrapper">
+
+        <div class="content text-center">
+            <h1 th:text="|${#response.status} - ${httpStatus.reasonPhrase}|" class="display-1 weight-400 mt-5" style="font-size: 6rem;">404</h1>
+            <p th:utext="${errorMessage}" class="lead mb-2">Ooops! Somthing went wrong :(</p>
+
+
+            <a th:href="@{/}" class="btn btn-primary px-4 mt-4 rounded" >Go Back Home</a>
+        </div>
+
+    </div>
+
+<!--        <h1 th:text="|${httpStatus} - ${httpStatus.reasonPhrase}|">404</h1>-->
+<!--        <p th:utext="${errorMessage}">Error java.lang.NullPointerException</p>-->
+<!--        <a href="index.html" th:href="@{/index.html}">Back to Home Page 4444</a>-->
+    </body>
+</html>
+
+
