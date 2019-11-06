@@ -1,7 +1,6 @@
 package com.msf.msfmng.repository;
 
-import com.eigpay.idf.entity.SysResource;
-import com.eigpay.idf.entity.SysRole;
+import com.msf.msfmng.entity.SysRole;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

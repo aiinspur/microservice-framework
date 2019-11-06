@@ -1,18 +1,15 @@
 package com.msf.msfmng.security;
 
-import com.eigpay.idf.constant.SysConstant;
-import com.eigpay.idf.entity.SysUser;
-import com.eigpay.idf.service.sys.UserService;
+import com.msf.msfmng.entity.SysUser;
+import com.msf.msfmng.service.sys.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 

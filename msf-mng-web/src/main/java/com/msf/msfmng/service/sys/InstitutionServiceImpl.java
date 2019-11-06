@@ -1,8 +1,8 @@
 package com.msf.msfmng.service.sys;
 
-import com.eigpay.idf.entity.Institution;
-import com.eigpay.idf.repository.InstitutionRepository;
-import com.eigpay.idf.service.base.BaseServiceImpl;
+import com.msf.msfmng.entity.Institution;
+import com.msf.msfmng.repository.InstitutionRepository;
+import com.msf.msfmng.service.base.BaseServiceImpl;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

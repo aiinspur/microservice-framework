@@ -1,7 +1,6 @@
 package com.msf.msfmng.repository;
 
-import com.eigpay.idf.entity.Dict;
-import com.eigpay.idf.entity.Institution;
+import com.msf.msfmng.entity.Dict;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

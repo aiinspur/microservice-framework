@@ -1,10 +1,10 @@
 package com.msf.msfmng.service.sys;
 
-import com.eigpay.idf.entity.RoleAndResourceRelationship;
-import com.eigpay.idf.entity.SysRole;
-import com.eigpay.idf.repository.RoleAndResourceRelRepository;
-import com.eigpay.idf.repository.RoleRepository;
-import com.eigpay.idf.service.base.BaseServiceImpl;
+import com.msf.msfmng.entity.RoleAndResourceRelationship;
+import com.msf.msfmng.entity.SysRole;
+import com.msf.msfmng.repository.RoleAndResourceRelRepository;
+import com.msf.msfmng.repository.RoleRepository;
+import com.msf.msfmng.service.base.BaseServiceImpl;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;

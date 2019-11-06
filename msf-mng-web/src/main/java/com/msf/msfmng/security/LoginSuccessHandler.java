@@ -1,9 +1,9 @@
 package com.msf.msfmng.security;
 
-import com.eigpay.idf.constant.SysConstant;
-import com.eigpay.idf.controller.sys.vo.MenuVo;
-import com.eigpay.idf.entity.SysUser;
-import com.eigpay.idf.service.sys.ResourceService;
+import com.msf.msfmng.constant.SysConstant;
+import com.msf.msfmng.controller.sys.vo.MenuVo;
+import com.msf.msfmng.entity.SysUser;
+import com.msf.msfmng.service.sys.ResourceService;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;

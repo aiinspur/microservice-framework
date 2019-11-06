@@ -1,6 +1,6 @@
 package com.msf.msfmng.repository;
 
-import com.eigpay.idf.entity.RoleAndResourceRelationship;
+import com.msf.msfmng.entity.RoleAndResourceRelationship;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

@@ -1,10 +1,10 @@
 package com.msf.msfmng.service.sys;
 
-import com.eigpay.idf.entity.Dict;
-import com.eigpay.idf.entity.DictData;
-import com.eigpay.idf.repository.DictDataRepository;
-import com.eigpay.idf.repository.DictRepository;
-import com.eigpay.idf.service.base.BaseServiceImpl;
+import com.msf.msfmng.entity.Dict;
+import com.msf.msfmng.entity.DictData;
+import com.msf.msfmng.repository.DictDataRepository;
+import com.msf.msfmng.repository.DictRepository;
+import com.msf.msfmng.service.base.BaseServiceImpl;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
