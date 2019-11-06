@@ -24,6 +24,9 @@
     <modules>
         <module>msf-eureka</module>
         <module>msf-mng-web</module>
+        <module>msf-zuul</module>
+        <module>msf-user</module>
+        <module>msf-md</module>
     </modules>
 
 
