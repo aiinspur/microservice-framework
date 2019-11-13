@@ -1,10 +1,10 @@
-package com.msf.msfmng;
+package com.msf.oauth2;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class MsfMngApplicationTests {
+class Oauth2ApplicationTests {
 
     @Test
     void contextLoads() {

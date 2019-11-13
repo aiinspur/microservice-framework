@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head(~{this :: title}, ~{:: link},~{})">
+    <title>List</title>
+    <link th:href="@{/s/css/jquery.treetable.css}" rel="stylesheet">
+
+</head>
+<body>
+<section class="wrapper">
+    <aside class="sidebar" th:replace="layout/layout :: aside">
+    </aside>
+    <div class="content-area">
+        <header class="header sticky-top" th:replace="layout/layout :: header">
+        </header>
+
+
+
+        <div class="content-wrapper"
+             th:replace="layout/layout :: right(~{this :: .page-tilte},~{this :: .content},~{this :: #query})">
+
+            <div class="row page-tilte align-items-center">
+                <div class="col-md-auto">
+                    <a href="#" class="mt-3 d-md-none float-right toggle-controls"><span class="material-icons">keyboard_arrow_down</span></a>
+                    <h1 class="weight-300 h3 title">Institution Management </h1>
+                    <p class="text-muted m-0 desc">Institution List</p>
+                </div>
+                <div class="col controls-wrapper mt-3 mt-md-0 d-none d-md-block ">
+                    <div class="controls d-flex justify-content-center justify-content-md-end">
+                        <button id="queryBtn" type="button" class="btn btn-secondary  py-1 px-2"><span
+                                class="material-icons mr-1 align-top">filter_list</span>查询
+                        </button>
+                        <button id="btnAdd" type="button"
+                                th:onclick="@{'location.href=\''+${#servletContext.contextPath}+'/sys/user\''}"
+                                class="btn btn-secondary py-1 px-2">
+                            <span class="material-icons align-text-bottom">add</span>
+                        </button>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="card mb-2" id="query" style="display: none">
+                <div class="card-header">Query</div>
+                <div class="card-body">
+                    <div class="form-group row">
+                        <label for="inputEmail3" class="col-sm-auto col-form-label">名称：</label>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="inputEmail3" placeholder="menu name">
+                        </div>
+                        <button type="button" class="btn btn-sm btn-info ">查询</button>
+                    </div>
+                </div>
+            </div>
+
+
+            <div id="users-list" class="content" th:fragment="user-list">
+                <table class="table mb-4 responsive-table table-bordered bg-white">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">col1</th>
+                        <th scope="col">col2</th>
+                        <th scope="col">col3</th>
+                        <th scope="col">col4</th>
+                        <th scope="col">col5</th>
+                        <th scope="col" width="1">操作</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+<!--                    <tr th:each="obj : ${list}">-->
+                        <tr>
+                            <td>
+<!--                                <a href="#" th:href="@{'/sys/user/'+${obj.getId()}}" class="text-secondary" th:text="${obj.username}">aiinspur</a>-->
+                                <a href="#"  class="text-secondary" th:text="1">aiinspur</a>
+                            </td>
+                            <td th:text="1">aiinspur</td>
+                            <td th:text="1"> - </td>
+                            <td th:text="1"> - </td>
+                            <td th:text="1"> - </td>
+                            <td data-label="Actions" class="text-md-center dropdown dropleft">
+                                <a href="#" class="text-muted" id="actionDropdown" data-toggle="dropdown"><span
+                                        class="material-icons md-20 align-middle">more_vert</span></a>
+                                <div class="dropdown-menu" aria-labelledby="actionDropdown">
+                                    <a class="dropdown-item" href="#"
+                                       th:href="@{/}">编辑</a>
+                                    <a class="dropdown-item" href="#"
+                                       th:href="@{/}">新增</a>
+                                    <a class="dropdown-item disabled" href="#">删除</a>
+                                </div>
+                            </td>
+                    </tr>
+
+
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+
+
+
+    </div>
+</section>
+
+<th:block th:replace="fragments/js::common(~{})"/>
+
+
+
+<script th:inline="javascript">
+
+    $(function () {
+
+
+
+
+
+    });
+
+</script>
+</body>
+
+</html>

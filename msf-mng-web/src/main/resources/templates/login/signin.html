@@ -23,7 +23,7 @@
         </div>
 
         <div class="form">
-            <form id="localeForm" th:method="get" th:action="@{/signin.html}">
+            <form id="localeForm" th:method="get" th:action="@{/a/signin.html}">
                 <select id="locale" name="locale" class="form-control float-right w-auto">
                     <option th:selected="${#locale} eq zh_CN" th:value="zh_CN">简体中文</option>
                     <option th:selected="${#locale.toString()} eq zh_TW" th:value="zh_TW">繁体中文</option>
@@ -48,7 +48,7 @@
                     <a href="#" data-toggle="modal" data-target="#forgotPassword" class="float-right">Password ?</a>
                 </div>
                 <button class="btn mt-4 btn-primary btn-block" type="submit">Login</button>
-                <a href="#" th:href="@{/signup.html}" class="mt-2 float-right">Sign Up</a>
+                <a href="#" th:href="@{/signup.html}" class="mt-2 float-right">Sign Up 0</a>
             </form>
 
         </div>

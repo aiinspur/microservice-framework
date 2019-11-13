@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: zuul
+server:
+  port: 5556
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://hello:word@localhost:8761/eureka/
+zuul:
+  add-host-header: true
+  routes:
+    md-center:
+      path: /md/**
+      serviceId: md-center
+
+    user-center:
+      path: /user/**
+      serviceId: user-service
+
+    mng-service:
+      path: /idf/**
+      service-id: mng-web
+      strip-prefix: false
+      add-host-header: true
+      sensitive-headers:
+      custom-sensitive-headers: true
+  sensitive-headers:
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  server:
+    port: 8669
+
+
+
+security:
+  oauth2:
+    client:
+      client-id: zuul_1
+      client-secret: 123456
+      access-token-uri: http://localhost:8081/oauth/token
+      user-authorization-uri: http://localhost:8081/oauth/authorize
+    resource:
+      user-info-uri: http://localhost:8081/users/current

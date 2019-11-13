@@ -27,6 +27,7 @@
         <module>msf-zuul</module>
         <module>msf-user</module>
         <module>msf-md</module>
+        <module>msf-oauth2</module>
     </modules>
 
 

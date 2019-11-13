@@ -24,10 +24,10 @@ import java.util.Locale;
 @Controller
 public class MainController {
 
-    @ModelAttribute("menuHref")
-    public String module() {
-        return "index";
-    }
+    //@ModelAttribute("menuHref")
+//    public String module() {
+//        return "index";
+//    }
 
     @RequestMapping("/")
     public String root() {

@@ -17,6 +17,13 @@ eureka:
   environment: Eigpay Dev
   datacenter: Eigpay Default
 
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  server:
+    port: 8666
 ---
 spring:
   profiles: eureka-server-single
@@ -25,6 +32,7 @@ server:
 eureka:
   instance:
     hostname: eureka-server-single
+    prefer-ip-address: true
   server:
     peer-eureka-status-refresh-time-interval-ms: 1000
   client:

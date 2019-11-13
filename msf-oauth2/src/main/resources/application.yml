@@ -3,8 +3,7 @@
 
 spring:
   application:
-    message: Hello Phil
-    name: mng-web
+    name: oauth-server
   datasource:
     url: jdbc:mysql://localhost:3306/idf?useUnicode=true&characterEncoding=utf8&serverTimezone=UTC
     username: root
@@ -14,26 +13,12 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: none
-  thymeleaf:
-    cache: false
-  resources:
-    cache:
-      period: 0
-  messages:
-    basename: i18n/messages
-    encoding: UTF-8
-  http:
-    encoding:
-      force: true
-  jackson:
-    time-zone: Asia/Shanghai
+  security:
+    user:
+      name: user
+      password: helloword
 server:
-  servlet:
-    context-path: /idf
-  port: 80
-  tomcat:
-    uri-encoding: utf-8
-  forward-headers-strategy: framework
+  port: 8081
 
 # 注册中心
 eureka:
@@ -44,3 +29,19 @@ eureka:
   instance:
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
+
+
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+       include: "*"
+  server:
+    port: 8667
+logging:
+  level:
+    org:
+      springframework:
+        security: DEBUG
