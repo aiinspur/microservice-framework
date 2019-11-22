@@ -4,6 +4,7 @@ import com.msf.msfmng.security.LoginSuccessHandler;
 import com.msf.msfmng.security.SysAuthenticationProvider;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -15,6 +16,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
  * @date 2019-06-12
  */
 @EnableWebSecurity
+@Order(1)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     private static final Logger log = LoggerFactory.getLogger(WebSecurityConfig.class);
 
@@ -36,8 +38,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
-                    .antMatchers("/admin/**").hasRole("ADMIN")
-                    .antMatchers("/user/**").hasRole("USER")
+                    //.antMatchers("/admin/**").hasRole("ADMIN")
+                    //.antMatchers("/user/**").hasRole("USER")
                     .antMatchers("/shared/**").hasAnyRole("USER", "ADMIN")
                     .antMatchers("/","/signup.html","/signin.html","/locale","/favicon.ico","/s/**").permitAll()
                     .anyRequest().authenticated()

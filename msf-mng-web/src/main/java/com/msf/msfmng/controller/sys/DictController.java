@@ -1,15 +1,15 @@
 package com.msf.msfmng.controller.sys;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.msf.msfmng.entity.Dict;
 import com.msf.msfmng.entity.DictData;
 import com.msf.msfmng.service.sys.DictService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -26,6 +26,20 @@ public class DictController {
     private static final String LIST_VIEW_NAME = "sys/dict/list";
 
     private DictService dictService;
+
+    @ResponseBody
+    @RequestMapping("sys/dicts/page")
+    public String page(Dict dict) throws JsonProcessingException {
+
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode root = mapper.createObjectNode();
+        root.put("recordsTotal",50);
+        root.put("recordsFiltered",50);
+        root.putPOJO("data",dictService.list(dict));
+
+        String json = mapper.writeValueAsString(root);
+        return json;
+    }
 
     @GetMapping("sys/dicts")
     public String list(Model model, Dict dict) {

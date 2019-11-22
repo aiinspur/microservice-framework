@@ -1,8 +1,9 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="layout/layout :: head(~{this :: title}, ~{},~{})">
+<head th:replace="layout/layout :: head(~{this :: title}, ~{this :: link},~{})">
     <title>Dict List</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>
 </head>
 <body>
 <section class="wrapper">
@@ -56,7 +57,7 @@
 
             <div class="content">
 
-                <table id="treeTable" class="table mb-4 responsive-table table-bordered bg-white">
+                <table id="dataTable" class="table mb-4 responsive-table table-bordered bg-white">
                     <thead class="thead-light">
                     <tr>
                         <th scope="col">字典名称</th>
@@ -67,26 +68,26 @@
                     </thead>
                     <tbody>
 
-                    <tr th:each="obj : ${list}">
-                        <td>
-                            <a href="#" th:href="@{'/sys/dict/data/'+${obj.getId()}}" class="text-secondary"
-                               th:text="${obj.name}"> - </a></td>
-                        <td th:text="${obj.code}"> - </td>
-                        <td th:text="${obj.remarks}"> - </td>
-                        <td>
-                            <a href="#" th:href="@{'/sys/dict/'+${obj.code}+'/data/'}">
-                                <span class="material-icons ">settings</span>
-                            </a>
-                            <a href="#" th:href="@{'/sys/dict/'+${obj.getId()}}">
-                                <span class="material-icons ">edit</span>
-                            </a>
-                            <a href="#" onclick="alert('not allow')" class="border-danger">
-                                <span class="material-icons border-danger">delete</span>
-                            </a>
+<!--                    <tr th:each="obj : ${list}">-->
+<!--                        <td>-->
+<!--                            <a href="#" th:href="@{'/sys/dict/data/'+${obj.getId()}}" class="text-secondary"-->
+<!--                               th:text="${obj.name}"> - </a></td>-->
+<!--                        <td th:text="${obj.code}"> - </td>-->
+<!--                        <td th:text="${obj.remarks}"> - </td>-->
+<!--                        <td>-->
+<!--                            <a href="#" th:href="@{'/sys/dict/'+${obj.code}+'/data/'}">-->
+<!--                                <span class="material-icons ">settings</span>-->
+<!--                            </a>-->
+<!--                            <a href="#" th:href="@{'/sys/dict/'+${obj.getId()}}">-->
+<!--                                <span class="material-icons ">edit</span>-->
+<!--                            </a>-->
+<!--                            <a href="#" onclick="alert('not allow')" class="border-danger">-->
+<!--                                <span class="material-icons border-danger">delete</span>-->
+<!--                            </a>-->
 
 
-                        </td>
-                    </tr>
+<!--                        </td>-->
+<!--                    </tr>-->
 
 
                     </tbody>
@@ -100,12 +101,38 @@
 </section>
 
 
-<th:block th:replace="fragments/js::common(~{})"/>
+
+<th:block th:replace="fragments/js::common(~{::custom-script})"/>
+
+<script class="custom-script" type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+<script class="custom-script" type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 
 
-<script>
+<script type="text/javascript" th:inline="javascript">
+
+
+    /*<![CDATA[*/
+    ctxPath = /*[[@{/}]]*/ '';
+    /*]]>*/
 
     $(function () {
+        $('#dataTable').DataTable({
+            "processing": true,
+            "serverSide": true,
+            "ajax": ctxPath+"sys/dicts/page",
+            "columns": [
+                { data: 'name' },
+                { data: 'code' },
+                { data: 'remarks'},
+                {data: null,
+                    "render":function (data,type,row,meta) {
+                        var html = "<a href=\"#\" th:href=\"@{'/sys/dict/"+row.code+"/data/'}\"><span class=\"material-icons \">settings</span></a>";
+                        return html;
+                    }
+                }
+            ],
+            "aLengthMenu": [1, 2, 5]//也可以直接用一维数组设置数量
+    });
 
         $("#queryBtn").click(function () {
             var text = "";

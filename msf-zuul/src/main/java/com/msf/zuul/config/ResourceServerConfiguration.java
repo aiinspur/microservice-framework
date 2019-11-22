@@ -19,9 +19,26 @@ public class ResourceServerConfiguration extends ResourceServerConfigurerAdapter
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/user/product/**").permitAll()
-                .antMatchers("/user/**","/zuul/**")
-                .authenticated()
-        ;
+                .antMatchers(permitUrls())
+                .permitAll()
+                .antMatchers("/user/**", "/zuul/**")
+                .authenticated();
+    }
+
+
+    /**
+     * 允许的urls列表
+     *
+     * @return urls
+     */
+    private String[] permitUrls() {
+        return new String[]{
+                "/idf/s/**",
+                "/idf/",
+                "/idf",
+                "/idf/signin.html",
+                "/idf/signup.html"
+        };
+
     }
 }

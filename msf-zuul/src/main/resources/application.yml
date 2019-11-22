@@ -9,6 +9,8 @@ eureka:
     service-url:
       defaultZone: http://hello:word@localhost:8761/eureka/
 zuul:
+  host:
+    connect-timeout-millis: 15000 #HTTP连接超时要比Hystrix的大
   add-host-header: true
   routes:
     md-center:
@@ -47,3 +49,20 @@ security:
       user-authorization-uri: http://localhost:8081/oauth/authorize
     resource:
       user-info-uri: http://localhost:8081/users/current
+
+
+
+debug: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 20000
+
+
+ribbon:
+  ReadTimeout: 10000
+  ConnectTimeout: 10000

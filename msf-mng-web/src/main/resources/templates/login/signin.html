@@ -23,7 +23,7 @@
         </div>
 
         <div class="form">
-            <form id="localeForm" th:method="get" th:action="@{/a/signin.html}">
+            <form id="localeForm" th:method="get" th:action="@{/signin.html}">
                 <select id="locale" name="locale" class="form-control float-right w-auto">
                     <option th:selected="${#locale} eq zh_CN" th:value="zh_CN">简体中文</option>
                     <option th:selected="${#locale.toString()} eq zh_TW" th:value="zh_TW">繁体中文</option>
@@ -84,7 +84,7 @@
 
 <script src="#" th:src="@{/s/js/jquery.min.js}"></script>
 <!--<script src="assets/js/popper.min.js"></script>-->
-<script src="#" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<!--<script src="#" th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>-->
 <!--<script src="assets/js/sys.js"></script>-->
 
 <script>

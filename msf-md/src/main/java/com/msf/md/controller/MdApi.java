@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2019-11-06
  */
 @RestController
-@RequestMapping()
+@RequestMapping
 public class MdApi {
 
     @GetMapping("/api/hello")

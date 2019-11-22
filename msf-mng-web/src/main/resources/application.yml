@@ -1,7 +1,11 @@
 #
 
 
+
 spring:
+  devtools:
+    restart:
+      enabled=true:
   application:
     message: Hello Phil
     name: mng-web
@@ -44,3 +48,29 @@ eureka:
   instance:
     prefer-ip-address: true
     instance-id: ${spring.cloud.client.ip-address}:${server.port}
+
+
+security:
+  oauth2:
+    resource:
+      user-info-uri: http://localhost:8081/users/current
+    client:
+      access-token-uri: http://localhost:8081/oauth/token
+      grant-type: client_credentials,password
+      scope: select
+debug: true
+
+feign:
+  hystrix:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 60000
+logging:
+  level:
+    root: debug

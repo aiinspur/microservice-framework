@@ -1,10 +1,30 @@
 # Micro Service Framework
 
 - Eureka Cluster
-- Spring Security Basic
+- Spring Oauth2 Service
+    除管理端外采用网关统一token鉴权的方式；
+    管理端自行鉴权
+    每个服务可以自己配置资源访问权限，默认全部允许。
+- Master Data 
+- User Service
+- Mng-web Service
+- Zuul Service
+
+
+Feign服务间调用
+
+## 服务降级
+> 使用feign + hystrix实现服务降级
+```
+1. 配置Feign和Hystrix集成 feign.hystrix.enabled=true
+2. 编写降级后的服务处理类
+```
 
 
 
+
+
+## 参考资料
 Spring Cloud 微服务中搭建 OAuth2.0 认证授权服务：
 https://www.cnblogs.com/Irving/p/9343377.html
 
@@ -30,3 +50,8 @@ https://blog.51cto.com/zero01/2435946
 
 OAuth 2.0定义了四种授权方式
 https://blog.csdn.net/lixiang987654321/article/details/83381494
+
+
+
+cas：
+https://www.cnblogs.com/jiang-000/p/11222932.html
