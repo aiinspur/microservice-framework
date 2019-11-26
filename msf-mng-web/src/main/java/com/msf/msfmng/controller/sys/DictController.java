@@ -6,6 +6,10 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.msf.msfmng.entity.Dict;
 import com.msf.msfmng.entity.DictData;
 import com.msf.msfmng.service.sys.DictService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -31,11 +35,16 @@ public class DictController {
     @RequestMapping("sys/dicts/page")
     public String page(Dict dict) throws JsonProcessingException {
 
+
+        Pageable pageable = PageRequest.of(0,1);
+
+        Page<Dict> page = dictService.page(pageable);
+
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode root = mapper.createObjectNode();
-        root.put("recordsTotal",50);
-        root.put("recordsFiltered",50);
-        root.putPOJO("data",dictService.list(dict));
+        root.put("recordsTotal",page.getTotalPages());
+        root.put("recordsFiltered",page.getTotalPages());
+        root.putPOJO("data",page.getContent());
 
         String json = mapper.writeValueAsString(root);
         return json;

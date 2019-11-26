@@ -119,7 +119,11 @@
         $('#dataTable').DataTable({
             "processing": true,
             "serverSide": true,
-            "ajax": ctxPath+"sys/dicts/page",
+            "ajax": {
+                url: ctxPath+"sys/dicts/page",
+                type: "get",
+                data: ""
+                    },
             "columns": [
                 { data: 'name' },
                 { data: 'code' },

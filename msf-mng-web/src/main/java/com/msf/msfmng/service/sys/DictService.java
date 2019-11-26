@@ -4,6 +4,8 @@ package com.msf.msfmng.service.sys;
 import com.msf.msfmng.entity.Dict;
 import com.msf.msfmng.entity.DictData;
 import com.msf.msfmng.service.base.BaseService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -12,6 +14,13 @@ import java.util.List;
  * @date 2019-08-01
  */
 public interface DictService extends BaseService<Dict> {
+
+    /**
+     * page method
+     * @param pageable
+     * @return
+     */
+    Page<Dict> page(Pageable pageable);
 
 
     /**

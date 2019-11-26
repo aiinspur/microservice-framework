@@ -5,6 +5,8 @@ import com.msf.msfmng.entity.DictData;
 import com.msf.msfmng.repository.DictDataRepository;
 import com.msf.msfmng.repository.DictRepository;
 import com.msf.msfmng.service.base.BaseServiceImpl;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,9 +20,12 @@ public class DictServiceImpl extends BaseServiceImpl<DictRepository, Dict> imple
 
     private DictDataRepository dictDataRepository;
 
+    private DictRepository dictRepository;
+
     public DictServiceImpl(DictRepository dictRepository, DictDataRepository dictDataRepository) {
         super(dictRepository);
         this.dictDataRepository = dictDataRepository;
+        this.dictRepository = dictRepository;
     }
 
 
@@ -38,5 +43,11 @@ public class DictServiceImpl extends BaseServiceImpl<DictRepository, Dict> imple
     @Override
     public void deleteDictData(Long id) {
         dictDataRepository.deleteById(id);
+    }
+
+
+    @Override
+    public Page<Dict> page(Pageable pageable) {
+        return dictRepository.findAll(pageable);
     }
 }
