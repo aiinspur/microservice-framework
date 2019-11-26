@@ -4,6 +4,8 @@
 <head th:replace="layout/layout :: head(~{this :: title}, ~{this :: link},~{})">
     <title>Dict List</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>
+    <link rel="stylesheet" class="custom-link" th:href="@{/s/css/page.css}" >
+
 </head>
 <body>
 <section class="wrapper">
@@ -101,9 +103,6 @@
 </section>
 
 
-
-<th:block th:replace="fragments/js::common(~{::custom-script})"/>
-
 <script class="custom-script" type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
 <script class="custom-script" type="text/javascript" src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 
@@ -119,10 +118,13 @@
         $('#dataTable').DataTable({
             "processing": true,
             "serverSide": true,
+            "iTabIndex": 1,
             "ajax": {
                 url: ctxPath+"sys/dicts/page",
                 type: "get",
-                data: ""
+                data: {
+                    // "length":1
+                }
                     },
             "columns": [
                 { data: 'name' },
@@ -135,7 +137,7 @@
                     }
                 }
             ],
-            "aLengthMenu": [1, 2, 5]//也可以直接用一维数组设置数量
+            "aLengthMenu": [2,3, 5]//也可以直接用一维数组设置数量
     });
 
         $("#queryBtn").click(function () {

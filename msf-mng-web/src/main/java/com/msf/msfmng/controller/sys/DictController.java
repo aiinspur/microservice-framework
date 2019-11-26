@@ -9,12 +9,12 @@ import com.msf.msfmng.service.sys.DictService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -33,18 +33,18 @@ public class DictController {
 
     @ResponseBody
     @RequestMapping("sys/dicts/page")
-    public String page(Dict dict) throws JsonProcessingException {
-
-
-        Pageable pageable = PageRequest.of(0,1);
+    public String page(Dict dict, HttpServletRequest request,
+                       @RequestParam(value = "start", defaultValue = "0") Integer start,
+                       @RequestParam(value = "length", defaultValue = "10") Integer length) throws JsonProcessingException {
+        Pageable pageable = PageRequest.of(start / length , length);
 
         Page<Dict> page = dictService.page(pageable);
 
         ObjectMapper mapper = new ObjectMapper();
         ObjectNode root = mapper.createObjectNode();
-        root.put("recordsTotal",page.getTotalPages());
-        root.put("recordsFiltered",page.getTotalPages());
-        root.putPOJO("data",page.getContent());
+        root.put("recordsTotal", page.getTotalElements());
+        root.put("recordsFiltered", page.getTotalElements());
+        root.putPOJO("data", page.getContent());
 
         String json = mapper.writeValueAsString(root);
         return json;
